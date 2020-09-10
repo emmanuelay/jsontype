@@ -7,7 +7,8 @@ import (
 
 const jsonStructTagName = "json"
 
-// StructToMap aggregates a Struct containing jsontype structs into a map
+// StructToMap iterates over a Struct containing jsontype
+// and returns a map with key/values of set and valid values
 func StructToMap(input interface{}) map[string]interface{} {
 	v := reflect.ValueOf(input)
 	typeOfS := v.Type()
@@ -42,9 +43,9 @@ func StructToMap(input interface{}) map[string]interface{} {
 			}
 			break
 		case "Int64":
-			intVal := fieldValue.(Int64)
-			if (intVal.Set == true) && (intVal.Valid == true) {
-				out[jsonTag] = intVal.Value
+			intVal64 := fieldValue.(Int64)
+			if (intVal64.Set == true) && (intVal64.Valid == true) {
+				out[jsonTag] = intVal64.Value
 			}
 			break
 		case "Bool":
