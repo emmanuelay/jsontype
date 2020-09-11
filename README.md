@@ -6,41 +6,41 @@ The sole purpose of this package was to be able to deserialize JSON payloads and
 Basically turning a struct like this:
 
 ```
-	type User struct {
-		FirstName 	jsontype.String `json:"first_name"`
-		LastName 	jsontype.String `json:"last_name"`
-		City 		jsontype.String `json:"city"`
-		Country 	jsontype.String `json:"country"`
-		Age 		jsontype.Int 	`json:"age"`
-		PhoneNum	jsontype.String `json:"phone"`
-		IsActive 	jsontype.Bool 	`json:"active"`
-	}
+type User struct {
+	FirstName 	jsontype.String `json:"first_name"`
+	LastName 	jsontype.String `json:"last_name"`
+	City 		jsontype.String `json:"city"`
+	Country 	jsontype.String `json:"country"`
+	Age 		jsontype.Int 	`json:"age"`
+	PhoneNum	jsontype.String `json:"phone"`
+	IsActive 	jsontype.Bool 	`json:"active"`
+}
 ```
 
 ..with a payload like this:
 
 ```
-	[PUT] /1.0/user/1234
-	{
-		"first_name": "John",
-		"last_name": "Doe",
-		"age": 33,
-		"active": true
-	}
+[PUT] /1.0/user/1234
+{
+	"first_name": "John",
+	"last_name": "Doe",
+	"age": 33,
+	"active": true
+}
 ```
 
 ..into something like this:
 
 ```
-	UPDATE 
-		tbl_user 
-	SET 
-		first_name = 'John', 
-		last_name = 'Doe', 
-		age = 33, 
-		active = true 
-	WHERE 
-		id = 1234
+UPDATE 
+	tbl_user 
+SET 
+	first_name = 'John', 
+	last_name = 'Doe', 
+	age = 33, 
+	active = true 
+WHERE 
+	id = 1234
 ```
 
 ..by safely removing any missing or invalid values in the payload and only updating the values that are present in the payload, using the built-in **UnmarshalJSON** method.
