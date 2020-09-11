@@ -14,18 +14,19 @@ type User struct {
 	Age 		jsontype.Int 	`json:"age"`
 	PhoneNum	jsontype.String `json:"phone"`
 	IsActive 	jsontype.Bool 	`json:"active"`
+	Birthdate 	jsontype.Date 	`json:"birthdate"`
 }
 ```
 
 ..with a payload like this:
 
 ```JSON
-[PUT] /1.0/user/1234
 {
 	"first_name": "John",
 	"last_name": "Doe",
 	"age": 33,
-	"active": true
+	"active": true,
+	"birthdate": "2001-04-03"
 }
 ```
 
@@ -38,7 +39,8 @@ SET
 	first_name = 'John', 
 	last_name = 'Doe', 
 	age = 33, 
-	active = true 
+	active = true,
+	birthdate = '2001-04-03'
 WHERE 
 	id = 1234
 ```
@@ -47,10 +49,10 @@ WHERE
 
 # Credits
 Based on an article by Jon Calhoun
+
 https://www.calhoun.io/how-to-determine-if-a-json-key-has-been-set-to-null-or-not-provided/
 
-I have simply added tests and support for string, int, int64 and bool as that is just what I needed.
-I will probably add support for **time.Time** aswell.
+I have simply added tests and support for string, int, int64, bool and ISO8601-date as that is all that I currently need.
 
 # Other
-This whole package probably can and will be replaced with generics in the near future.
+Parts of this package probably can and will be replaced with generics in the near future.
