@@ -5,7 +5,7 @@ The sole purpose of this package was to be able to deserialize JSON payloads and
 
 Basically turning a struct like this:
 
-```
+```Go
 type User struct {
 	FirstName 	jsontype.String `json:"first_name"`
 	LastName 	jsontype.String `json:"last_name"`
@@ -19,7 +19,7 @@ type User struct {
 
 ..with a payload like this:
 
-```
+```JSON
 [PUT] /1.0/user/1234
 {
 	"first_name": "John",
@@ -31,7 +31,7 @@ type User struct {
 
 ..into something like this:
 
-```
+```SQL
 UPDATE 
 	tbl_user 
 SET 
