@@ -53,6 +53,11 @@ func StructToMap(input interface{}) map[string]interface{} {
 			if (boolVal.Set == true) && (boolVal.Valid == true) {
 				out[jsonTag] = boolVal.Value
 			}
+		case "Date":
+			dateVal := fieldValue.(Date)
+			if (dateVal.Set == true) && (dateVal.Valid == true) {
+				out[jsonTag] = dateVal.Value
+			}
 			break
 
 		default:
